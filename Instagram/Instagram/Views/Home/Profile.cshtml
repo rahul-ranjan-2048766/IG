@@ -1,0 +1,193 @@
+﻿@model Instagram.Models.UserAndProfilePic
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instagram - @ViewData["Title"]</title>
+    <link rel="icon" type="image/x-icon" href="~/images/icon.ico" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Instagram.styles.css" asp-append-version="true" />
+</head>
+<body class="controlPanel">
+    <div class="container-fluid vessel p-0 m-0">
+        <div class="row m-0 p-0 veil_2">
+            <div class="m-0 p-0 sidebar" id="sidebar">
+                <div class="titleTag mb-4">
+                    <div class="titleBox py-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" fill="currentColor" class="bi bi-strava" viewBox="0 0 16 16">
+                            <path d="M6.731 0 2 9.125h2.788L6.73 5.497l1.93 3.628h2.766L6.731 0zm4.694 9.125-1.372 2.756L8.66 9.125H6.547L10.053 16l3.484-6.875h-2.112z" />
+                        </svg>&nbsp;<h1>Instagram</h1>
+                        &nbsp;
+                        @if (Model.ProfilePic == null)
+                        {
+                            <img src="~/images/developer.png" />
+                        }
+                        else
+                        {
+                            <img src="/@Model.ProfilePic.ImageFile" />
+                        }
+                    </div>
+                </div>
+                <div class="menus">
+                    <ul>
+                        <li>
+                            <a class="menuStuff menuHover" asp-controller="Home" asp-action="Dashboard">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-house-heart-fill" viewBox="0 0 16 16">
+                                    <path d="M7.293 1.5a1 1 0 0 1 1.414 0L11 3.793V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v3.293l2.354 2.353a.5.5 0 0 1-.708.707L8 2.207 1.354 8.853a.5.5 0 1 1-.708-.707L7.293 1.5Z" />
+                                    <path d="m14 9.293-6-6-6 6V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V9.293Zm-6-.811c1.664-1.673 5.825 1.254 0 5.018-5.825-3.764-1.664-6.691 0-5.018Z" />
+                                </svg>&nbsp;<p>Home</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="menuStuff menuHover" asp-controller="Home" asp-action="Friends">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                                    <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
+                                </svg>&nbsp;<p>Friends</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="menuStuff menuHover" asp-controller="Home" asp-action="Community">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-x-diamond-fill" viewBox="0 0 16 16">
+                                    <path d="M9.05.435c-.58-.58-1.52-.58-2.1 0L4.047 3.339 8 7.293l3.954-3.954L9.049.435zm3.61 3.611L8.708 8l3.954 3.954 2.904-2.905c.58-.58.58-1.519 0-2.098l-2.904-2.905zm-.706 8.614L8 8.708l-3.954 3.954 2.905 2.904c.58.58 1.519.58 2.098 0l2.905-2.904zm-8.614-.706L7.292 8 3.339 4.046.435 6.951c-.58.58-.58 1.519 0 2.098l2.904 2.905z" />
+                                </svg>&nbsp;<p>Community</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="menuStuff menuHover" asp-controller="Home" asp-action="MyPosts">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-layers-fill" viewBox="0 0 16 16">
+                                    <path d="M7.765 1.559a.5.5 0 0 1 .47 0l7.5 4a.5.5 0 0 1 0 .882l-7.5 4a.5.5 0 0 1-.47 0l-7.5-4a.5.5 0 0 1 0-.882l7.5-4z" />
+                                    <path d="m2.125 8.567-1.86.992a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882l-1.86-.992-5.17 2.756a1.5 1.5 0 0 1-1.41 0l-5.17-2.756z" />
+                                </svg>&nbsp;<p>My Posts</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="menuStuff activateMenu" asp-controller="Home" asp-action="Profile">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-file-earmark-post" viewBox="0 0 16 16">
+                                    <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z" />
+                                    <path d="M4 6.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-7zm0-3a.5.5 0 0 1 .5-.5H7a.5.5 0 0 1 0 1H4.5a.5.5 0 0 1-.5-.5z" />
+                                </svg>&nbsp;<p>Profile</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="menuStuff menuHover" asp-controller="Home" asp-action="SignOut">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z" />
+                                </svg>&nbsp;<p>Sign Out</p>
+                            </a>
+                        </li>
+                        <li><img src="~/images/the_tree_of_time.svg" /></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="m-0 p-5 main" id="main">
+                <div class="toggle toggleHandler" onclick="ToggleSidebar()">
+                    <div class="togglebox toggleboxHeight" id="togglebox">
+                        <div class="toggleLine toggle1" id="toggle1"></div>
+                        <div class="toggleLine toggle2" id="toggle2"></div>
+                    </div>
+                </div>
+                <div class="p-5"></div>
+                <div class="col-lg-9 ms-0 p-0 content" id="content">
+                    <a class="edit" asp-controller="Home" asp-action="Edit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" fill="currentColor" class="bi bi-tags-fill" viewBox="0 0 16 16">
+                            <path d="M2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2zm3.5 4a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+                            <path d="M1.293 7.793A1 1 0 0 1 1 7.086V2a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l.043-.043-7.457-7.457z" />
+                        </svg>
+                        <p>Edit</p>
+                    </a>
+                    <div class="p-4"></div>
+                    <div class="profileCard col-lg-12 p-5">
+                        <div class="row m-0 p-0 profileInfo">
+                            <div class="col-lg-3 m-0 p-0">
+                                <div class="profileImage">
+                                    @if (Model.ProfilePic == null)
+                                    {
+                                        <img src="~/images/developer.png" />
+                                    }
+                                    else
+                                    {
+                                        <img src="/@Model.ProfilePic.ImageFile" />
+                                    }
+                                </div>
+                                
+                                <div class="p-2"></div>
+                                <div class="data_1">
+                                    <p class="p_name">@Model.User.Name</p>
+                                    @if (Model.User.Job != null)
+                                    {
+                                        <p class="p_job">@Model.User.Job</p>
+                                    }
+                                </div>
+                                <div class="contactInfo">
+                                    @if (Model.User.Phone != null)
+                                    {
+                                        <p class="p_text">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+                                            </svg>&nbsp;@Model.User.Phone
+                                        </p>
+                                    }                                    
+                                    <p class="p_text">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                                            <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
+                                        </svg>&nbsp;@Model.User.Email
+                                    </p>
+                                </div>
+
+                                <div class="p-4"></div>
+                                <div class="data_2">
+                                    <h1>Extras</h1>
+                                    <p class="p_text">Date: @Model.User.DateTimeOfRegistration.ToString("MMMM dd, yyyy")</p>
+                                    <p class="p_text">Time: @Model.User.DateTimeOfRegistration.ToString("HH:mm:ss tt")</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-1 m-0 p-4"></div>
+                            <div class="col-lg-5 m-0 p-0">
+                                <h1>Firm</h1>
+                                @if (Model.User.Firm != null)
+                                {
+                                    <p class="p_text">@Model.User.Firm</p>
+                                }
+                                else
+                                {
+                                    <p class="p_text">Not Applicable</p>
+                                }
+                                <div class="p-2"></div>
+                                <h1>Chronicle</h1>
+                                @if (Model.User.Chronicle != null)
+                                {
+                                    <p class="p_text">@Model.User.Chronicle</p>
+                                }
+                                else
+                                {
+                                    <p class="p_text">Not Applicable</p>
+                                }
+                                <div class="p-2"></div>
+                                <h1>Address</h1>
+                                @if (Model.User.Address != null)
+                                {
+                                    <p class="p_text">@Model.User.Address</p>
+                                }
+                                else
+                                {
+                                    <p class="p_text">Not Applicable</p>
+                                }
+                            </div>
+                            <div class="col-lg-1 m-0 p-4"></div>
+                            <div class="col-lg-2 m-0 p-0 d-flex align-items-end justify-content-around">
+                                <img src="~/images/plant.png" class="profilePlant"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>

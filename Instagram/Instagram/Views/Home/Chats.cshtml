@@ -1,0 +1,464 @@
+﻿@model List<Instagram.Models.ChatDetails>
+
+
+<html>
+<head>
+    <title>Dashboard</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0" />
+    <link rel="icon" type="image/svg" href="~/admin_images/flower_logo2.png" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Instagram.styles.css" asp-append-version="true" />
+
+    <style>
+        .sideBar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 400px;
+            height: 100%;
+            transition: all 1s ease-in-out;
+            background: #ffffff;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+        }
+
+        .main {
+            position: absolute;
+            top: 0;
+            left: 400px;
+            background: #00000015;
+            width: 100%;
+            height: 100vh;
+            transition: all 1s ease-in-out;
+            overflow-y: scroll;
+        }
+
+        .frameCover {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .toggleAdminSideBar {
+            left: -450px;
+        }
+
+        .toggleAdminMain {
+            left: 0;
+        }
+
+        .adminBody {
+            overflow: hidden;
+        }
+
+        .title {
+            padding: 34px 0px 10px 60px;
+        }
+
+            .title h1 {
+                color: #606060a0;
+                letter-spacing: 1px;
+                font-size: 34px;
+                font-weight: 100;
+                width: 100%;
+                border-bottom: 1px solid #60606060;
+                padding-bottom: 6px;
+            }
+
+        .menus {
+            width: 100%;
+        }
+
+            .menus ul {
+                width: 100%;
+                padding: 0;
+            }
+
+                .menus ul li {
+                    list-style: none;
+                    padding-left: 40px;
+                }
+
+                    .menus ul li a {
+                        padding: 2px 0px 2px 25px;
+                        color: #606060a0;
+                        font-size: 18px;
+                        text-decoration: none;
+                        display: flex;
+                        align-items: center;
+                        cursor: pointer;
+                        transition-property: all;
+                        transition-duration: 1s;
+                        transition-timing-function: ease;
+                    }
+
+                        .menus ul li a svg {
+                            color: #606060a0;
+                        }
+
+                        .menus ul li a p {
+                            padding-top: 15px;
+                            color: #606060d0;
+                            letter-spacing: 1px;
+                        }
+
+        .anchor:hover {
+            color: #606060a0;
+            text-decoration: none;
+            background: #BF40BF40;
+            border-left: 6px solid #BF40BF;
+        }
+
+        .activated {
+            background: linear-gradient(to right, #BF40BF40, #ffffff15);
+            border-left: 6px solid #BF40BF;
+        }
+
+        .menus ul li:hover {
+        }
+
+        .image {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+            .image img {
+                width: 200px;
+            }
+
+        .anchor {
+            border-left: 6px solid transparent;
+        }
+
+        .closeSidebar {
+            width: 46px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .cover {
+            width: 100%;
+            height: 46%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.6s ease;
+        }
+
+        .line {
+            width: 100%;
+            padding: 2px;
+            background: #606060;
+            transition: all 0.6s ease;
+        }
+
+        .line_1 {
+            transform: rotate(45deg);
+        }
+
+        .line_2 {
+            transform: rotate(-45deg);
+        }
+
+        .coverToggle {
+            height: 2px;
+        }
+
+        .userCard {
+            background: #ffffff;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+        }
+
+        .cardDetail {
+            position: relative;
+        }
+
+        .cardDetail input {
+            width: 100%;
+            padding: 10px;
+            color: #606060d0;
+            font-size: 16px;
+            letter-spacing: 1px;
+            outline: none;
+            border: none;
+            padding-left: 60px;
+            box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+        }
+
+        .cardDetail label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 10px;
+            color: #60606060;
+            padding-left: 15px;
+            pointer-events: none;
+        }
+
+        .userDetails {
+            width: 100%;
+            border-bottom: 1px solid #60606060;
+            padding: 10px;
+            padding-left: 25px;
+            display: flex;
+            align-items: center;
+        }
+
+        .usersList {
+            width: 100%;
+            position: absolute;
+            top: 54px;
+            left: 0;
+            width: 290px;
+            background: #ffffff;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+        }
+
+        .usersList p {
+            font-size: 17px;
+            color: #606060d0;
+            letter-spacing: 1px;
+            padding-top: 15px;
+        }
+
+        .usersList img {
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+        }
+
+        .userDetails:hover {
+            background: #36454F15;
+        }
+
+        .chatMessages {
+            margin-top: 25px;
+            width: 100%;
+            height: 75vh;
+            overflow-y: scroll;
+            background: #ffffff;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+        }
+
+        .chatMessage {
+            background: #60006040;
+        }
+
+        .chatMessage img {
+            width: 60px;
+            height: 60px;
+            border-radius: 100%;
+        }
+
+        .chatMessage p {
+            
+        }
+
+        .senderInfo p {
+            color: #606060d0;
+            font-size: 17px;
+            letter-spacing: 1px;
+            line-height: 29px;
+            padding-top: 15px;
+        }
+
+        .message p {
+            color: #606060d0;
+            letter-spacing: 1px;
+            font-size: 16px;
+            line-height: 29px;
+        }
+
+        .datetime p {
+            color: #606060d0;
+            letter-spacing: 1px;
+            font-size: 15px;
+        }
+
+        #icon {
+            cursor: pointer;
+            color: #60606060;
+            margin-top: 6px;
+        }
+
+        #icon:hover {
+            filter: drop-shadow(1px 1px 1px #606060a0);
+        }
+
+    </style>
+</head>
+<body class="adminBody">
+    <div class="container-fluid m-0 p-0">
+        <div class="m-0 p-0 frameCover">
+            <div class="m-0 p-0 sideBar" id="adminSidebar">
+                <div class="title">
+                    <h1>Welcome Admin!!</h1>
+                </div>
+                <div class="menus">
+                    <ul>
+                        <li>
+                            <a class="anchor" asp-controller="Home" asp-action="AdminDash">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-signpost-fill" viewBox="0 0 16 16">
+                                    <path d="M7.293.707A1 1 0 0 0 7 1.414V4H2a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h5v6h2v-6h3.532a1 1 0 0 0 .768-.36l1.933-2.32a.5.5 0 0 0 0-.64L13.3 4.36a1 1 0 0 0-.768-.36H9V1.414A1 1 0 0 0 7.293.707z" />
+                                </svg>&nbsp;&nbsp;<p>Home</p>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="anchor" asp-controller="Home" asp-action="People">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-balloon-heart-fill" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8.49 10.92C19.412 3.382 11.28-2.387 8 .986 4.719-2.387-3.413 3.382 7.51 10.92l-.234.468a.25.25 0 1 0 .448.224l.04-.08c.009.17.024.315.051.45.068.344.208.622.448 1.102l.013.028c.212.422.182.85.05 1.246-.135.402-.366.751-.534 1.003a.25.25 0 0 0 .416.278l.004-.007c.166-.248.431-.646.588-1.115.16-.479.212-1.051-.076-1.629-.258-.515-.365-.732-.419-1.004a2.376 2.376 0 0 1-.037-.289l.008.017a.25.25 0 1 0 .448-.224l-.235-.468ZM6.726 1.269c-1.167-.61-2.8-.142-3.454 1.135-.237.463-.36 1.08-.202 1.85.055.27.467.197.527-.071.285-1.256 1.177-2.462 2.989-2.528.234-.008.348-.278.14-.386Z" />
+                                </svg>&nbsp;&nbsp;<p>People</p>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="anchor" asp-controller="Home" asp-action="Queries">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-folder-symlink-fill" viewBox="0 0 16 16">
+                                    <path d="M13.81 3H9.828a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 6.172 1H2.5a2 2 0 0 0-2 2l.04.87a1.99 1.99 0 0 0-.342 1.311l.637 7A2 2 0 0 0 2.826 14h10.348a2 2 0 0 0 1.991-1.819l.637-7A2 2 0 0 0 13.81 3zM2.19 3c-.24 0-.47.042-.683.12L1.5 2.98a1 1 0 0 1 1-.98h3.672a1 1 0 0 1 .707.293L7.586 3H2.19zm9.608 5.271-3.182 1.97c-.27.166-.616-.036-.616-.372V9.1s-2.571-.3-4 2.4c.571-4.8 3.143-4.8 4-4.8v-.769c0-.336.346-.538.616-.371l3.182 1.969c.27.166.27.576 0 .742z" />
+                                </svg>&nbsp;&nbsp;<p>Queries</p>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="anchor" asp-controller="Home" asp-action="Posts">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-gem" viewBox="0 0 16 16">
+                                    <path d="M3.1.7a.5.5 0 0 1 .4-.2h9a.5.5 0 0 1 .4.2l2.976 3.974c.149.185.156.45.01.644L8.4 15.3a.5.5 0 0 1-.8 0L.1 5.3a.5.5 0 0 1 0-.6l3-4zm11.386 3.785-1.806-2.41-.776 2.413 2.582-.003zm-3.633.004.961-2.989H4.186l.963 2.995 5.704-.006zM5.47 5.495 8 13.366l2.532-7.876-5.062.005zm-1.371-.999-.78-2.422-1.818 2.425 2.598-.003zM1.499 5.5l5.113 6.817-2.192-6.82L1.5 5.5zm7.889 6.817 5.123-6.83-2.928.002-2.195 6.828z" />
+                                </svg>&nbsp;&nbsp;<p>Posts</p>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="anchor" asp-controller="Home" asp-action="AdminCommunity">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-house-heart-fill" viewBox="0 0 16 16">
+                                    <path d="M7.293 1.5a1 1 0 0 1 1.414 0L11 3.793V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v3.293l2.354 2.353a.5.5 0 0 1-.708.707L8 2.207 1.354 8.853a.5.5 0 1 1-.708-.707L7.293 1.5Z" />
+                                    <path d="m14 9.293-6-6-6 6V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V9.293Zm-6-.811c1.664-1.673 5.825 1.254 0 5.018-5.825-3.764-1.664-6.691 0-5.018Z" />
+                                </svg>&nbsp;&nbsp;<p>Community</p>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="activated" asp-controller="Home" asp-action="Chats">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chat-heart-fill" viewBox="0 0 16 16">
+                                    <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15Zm0-9.007c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z" />
+                                </svg>&nbsp;&nbsp;<p>Chats</p>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="anchor" asp-controller="Home" asp-action="About">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+                                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+                                </svg>&nbsp;&nbsp;<p>About</p>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="anchor" asp-controller="Home" asp-action="ContactDeveloper">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-lightbulb-fill" viewBox="0 0 16 16">
+                                    <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm3 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5z" />
+                                </svg>&nbsp;&nbsp;<p>Contact Us</p>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="anchor" asp-controller="Home" asp-action="SignOut">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z" />
+                                </svg>&nbsp;&nbsp;<p>Sign Out</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="image">
+                    <img src="~/admin_images/time_2.svg" />
+                </div>
+            </div>
+            <div class="m-0 p-5 main" id="adminMain">
+
+                <div class="closeSidebar" onclick="ToggleAdminSideBar()">
+                    <div class="cover coverToggle" id="cover">
+                        <div class="line line_1" id="line_1"></div>
+                        <div class="line line_2" id="line_2"></div>
+                    </div>
+                </div>
+                <div class="col-lg-9 m-0 p-0 dataContainer">
+                    @using (Html.BeginForm("SearchChats", "Home", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken();
+                        <div class="userCard col-lg-10 p-2 row m-auto">
+                            <div class="col-lg-5 m-0 p-0 cardDetail">
+                                <input type="text" name="user_1" placeholder="Please enter user 1" />
+                                <label>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+                                        <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                                    </svg>
+                                </label>
+                            </div>
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-5 m-0 p-0 cardDetail">
+                                <input type="text" name="user_2" placeholder="Please enter user 2" />
+                                <label>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+                                        <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                                    </svg>
+                                </label>
+                            </div>
+
+                            <div class="col-lg-1">
+                                <svg onclick="$(this).closest('form').submit();" id="icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                </svg>
+                            </div>
+
+                            <div class="chatMessages p-4">
+                                @foreach (var data in Model)
+                                {
+                                        <div class="d-flex">
+                                        <div class="chatMessage px-4" id="chatMessage">
+                                                <div class="d-flex senderInfo">
+                                                    @if (data.Sender.ProfilePic == null)
+                                                    {
+                                                        <img src="~/images/developer.png" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="/@data.Sender.ProfilePic.ImageFile" />
+                                                    }
+                                                    <p>Sender: @data.Chat.Sender</p>
+                                                </div>
+                                                <div class="message px-4">
+                                                    <p>Message: @data.Chat.Message</p>
+                                                </div>
+                                                <div class="datetime">
+                                                    <p>dateTime: @data.Chat.DateTime</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <div class="p-2"></div>
+                                }
+                            </div>
+                        </div>
+                    }
+                    
+                    <div class="p-5"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/AdminSite.js" asp-append-version="true"></script>
+</body>
+</html>@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}

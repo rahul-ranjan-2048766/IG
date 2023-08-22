@@ -1,0 +1,107 @@
+﻿<html>
+    <head>
+        <title>Admin Login</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width; initial-scale=1.0"/>
+        <link rel="icon" type="image/x-icon" href="~/images/icon.ico" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/Instagram.styles.css" asp-append-version="true" />
+    </head>
+    <body>
+        <div class="p-lg-2"></div>
+    @if (ViewData["message"] != null)
+    {
+        <div class="alert alert-dismissible fade show col-lg-6 m-auto" style="background: #60006025; color: #60006060;">
+            <div class="d-flex align-items-center message">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cloud-drizzle-fill" viewBox="0 0 16 16">
+                    <path d="M4.158 12.025a.5.5 0 0 1 .316.633l-.5 1.5a.5.5 0 0 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.317zm6 0a.5.5 0 0 1 .316.633l-.5 1.5a.5.5 0 0 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.317zm-3.5 1.5a.5.5 0 0 1 .316.633l-.5 1.5a.5.5 0 0 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.317zm6 0a.5.5 0 0 1 .316.633l-.5 1.5a.5.5 0 1 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.317zm.747-8.498a5.001 5.001 0 0 0-9.499-1.004A3.5 3.5 0 1 0 3.5 11H13a3 3 0 0 0 .405-5.973z" />
+                </svg>&nbsp;
+                <div>
+                    @ViewData["message"]
+                </div>
+            </div>
+
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+    <div class="p-lg-4"></div>
+    @using (Html.BeginForm("AdminLogin", "Home", 
+                FormMethod.Post, new { @class = "col-lg-6 m-auto adminCard" }))
+    {
+            @Html.AntiForgeryToken()
+                <div class="adminTitle">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-house-heart-fill" viewBox="0 0 16 16">
+                        <path d="M7.293 1.5a1 1 0 0 1 1.414 0L11 3.793V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v3.293l2.354 2.353a.5.5 0 0 1-.708.707L8 2.207 1.354 8.853a.5.5 0 1 1-.708-.707L7.293 1.5Z" />
+                        <path d="m14 9.293-6-6-6 6V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V9.293Zm-6-.811c1.664-1.673 5.825 1.254 0 5.018-5.825-3.764-1.664-6.691 0-5.018Z" />
+                    </svg>&nbsp;
+                    <p>Welcome Admin!!</p>
+                </div>
+                <div class="adminImage">
+                    <img src="~/images/interior.webp" />
+                </div>
+                <div class="adminData">
+                    <h1>A Legendary cap for new Empowerment</h1>
+                    <p>
+                        Please sign in to check registered users and created posts. Also, check
+                        user queries and chats. Handle your market and customers and build the
+                        future. Here are a few things you can do with our product.
+                    </p>
+                </div>
+                <div class="row m-0 p-0">
+                    <div class="col-lg-6 m-0 p-0 adminSvg6">
+                        <img src="~/images/the_tree_of_time.svg" />
+                    </div>
+                    <div class="col-lg-6 m-0 p-0 adminData6">
+                        <p>
+                            Instagram is created by Wizard Rasputin, Cognizant Kolkata. Please reach out to
+                            us for any queries. Design is not just what it looks like or feels like. Key to
+                            your happiness.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-10 m-auto p-5">
+                    <div class="form-cover row">
+                        <div class="col-lg-4 m-0 p-0">
+                            <label class="label-title">Your Email</label>
+                        </div>
+                        <div class="col-lg-8 m-0 p-0">
+                            <div class="input-cover">
+                        <input name="email" type="email" class="input" placeholder="Please enter Admin name" autocomplete="off" />
+                                <label class="label-cover">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-heart" viewBox="0 0 16 16">
+                                        <path d="M9 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 8c0 1 1 1 1 1h10s1 0 1-1-1-4-6-4-6 3-6 4Zm13.5-8.09c1.387-1.425 4.855 1.07 0 4.277-4.854-3.207-1.387-5.702 0-4.276Z" />
+                                    </svg>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-3"></div>
+                    <div class="form-cover row">
+                        <div class="col-lg-4 m-0 p-0">
+                            <label class="label-title">Your Password</label>
+                        </div>
+                        <div class="col-lg-8 m-0 p-0">
+                            <div class="input-cover">
+                        <input name="password" type="password" class="input" placeholder="Please enter your password" autocomplete="off" />
+                                <label class="label-cover">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-alt" viewBox="0 0 16 16">
+                                        <path d="M1 13.5a.5.5 0 0 0 .5.5h3.797a.5.5 0 0 0 .439-.26L11 3h3.5a.5.5 0 0 0 0-1h-3.797a.5.5 0 0 0-.439.26L5 13H1.5a.5.5 0 0 0-.5.5zm10 0a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 0-.5.5z" />
+                                    </svg>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-3"></div>
+                    <div>
+                        <button type="submit" class="signin">Sign In</button>
+                    </div>
+                </div>
+        }
+    
+        <div class="p-lg-5"></div>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </body>
+</html>

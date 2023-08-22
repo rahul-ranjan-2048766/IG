@@ -1,0 +1,222 @@
+﻿@model Tuple<Instagram.Models.UserAndProfilePic, List<Instagram.Models.UserComment>>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instagram - @ViewData["Title"]</title>
+    <link rel="icon" type="image/x-icon" href="~/images/icon.ico" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Instagram.styles.css" asp-append-version="true" />
+
+    <style>
+
+        .dataCard {
+            min-width: 60%;
+            background: #ffffff40;
+            box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+        }
+
+        .senderInfo {
+            display: flex;
+            color: #606060a0;
+            background: #ffffff;
+            border-bottom: 1px solid #60606060;
+        }
+
+            .senderInfo p {
+                color: #606060d0;
+                letter-spacing: 1px;
+                word-wrap: break-word;
+                padding-top: 15px;
+            }
+
+            .p_tag_1 {
+                font-size: 20px;
+            }
+
+            .p_tag_2 {
+                font-size: 17px;
+            }
+
+            .senderInfo img {
+                width: 60px;
+                height: 60px;
+                border-radius: 100%;
+            }
+
+        .datetimeDiv {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #E5E4E2;
+            border-bottom: 1px solid #ffffff;
+            border-top: 1px solid #B2BEB5;
+        }
+
+            .datetimeDiv p {
+                color: #606060d0;
+                letter-spacing: 1px;
+                font-size: 15px;
+            }
+
+        #comment {
+            cursor: pointer;
+        }
+
+            #comment:hover {
+                filter: drop-shadow(1px 1px 1px #606060a0);
+            }
+
+        .getBack {
+            width: 75px;
+            height: 75px;
+            background: #7393B3;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            color: #ffffff;
+            flex-direction: column;
+            padding: 0px 0px 0px 0px;
+            cursor: pointer;
+            transition: all 0.6s ease;
+            text-decoration: none;
+        }
+
+        .getBack:hover {
+            text-decoration: none;
+            color: #ffffff;
+            box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+        }
+
+        .getBack p {
+            font-size: 18px;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 1px #00000060;
+        }
+    </style>
+</head>
+<body class="controlPanel">
+    <div class="container-fluid vessel p-0 m-0">
+        <div class="row m-0 p-0 veil_2">
+            <div class="m-0 p-0 sidebar" id="sidebar">
+                <div class="titleTag mb-4">
+                    <div class="titleBox py-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" fill="currentColor" class="bi bi-strava" viewBox="0 0 16 16">
+                            <path d="M6.731 0 2 9.125h2.788L6.73 5.497l1.93 3.628h2.766L6.731 0zm4.694 9.125-1.372 2.756L8.66 9.125H6.547L10.053 16l3.484-6.875h-2.112z" />
+                        </svg>&nbsp;<h1>Instagram</h1>
+                        &nbsp;
+                        @if (Model.Item1.ProfilePic == null)
+                        {
+                            <img src="~/images/developer.png" />
+                        }
+                        else
+                        {
+                            <img src="/@Model.Item1.ProfilePic.ImageFile" />
+                        }
+                    </div>
+                </div>
+                <div class="menus">
+                    <ul>
+                        <li>
+                            <a class="menuStuff menuHover" asp-controller="Home" asp-action="Dashboard">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-house-heart-fill" viewBox="0 0 16 16">
+                                    <path d="M7.293 1.5a1 1 0 0 1 1.414 0L11 3.793V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v3.293l2.354 2.353a.5.5 0 0 1-.708.707L8 2.207 1.354 8.853a.5.5 0 1 1-.708-.707L7.293 1.5Z" />
+                                    <path d="m14 9.293-6-6-6 6V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V9.293Zm-6-.811c1.664-1.673 5.825 1.254 0 5.018-5.825-3.764-1.664-6.691 0-5.018Z" />
+                                </svg>&nbsp;<p>Home</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="menuStuff menuHover" asp-controller="Home" asp-action="Friends">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                                    <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
+                                </svg>&nbsp;<p>Friends</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="menuStuff menuHover" asp-controller="Home" asp-action="Community">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-x-diamond-fill" viewBox="0 0 16 16">
+                                    <path d="M9.05.435c-.58-.58-1.52-.58-2.1 0L4.047 3.339 8 7.293l3.954-3.954L9.049.435zm3.61 3.611L8.708 8l3.954 3.954 2.904-2.905c.58-.58.58-1.519 0-2.098l-2.904-2.905zm-.706 8.614L8 8.708l-3.954 3.954 2.905 2.904c.58.58 1.519.58 2.098 0l2.905-2.904zm-8.614-.706L7.292 8 3.339 4.046.435 6.951c-.58.58-.58 1.519 0 2.098l2.904 2.905z" />
+                                </svg>&nbsp;<p>Community</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="menuStuff activateMenu" asp-controller="Home" asp-action="MyPosts">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-layers-fill" viewBox="0 0 16 16">
+                                    <path d="M7.765 1.559a.5.5 0 0 1 .47 0l7.5 4a.5.5 0 0 1 0 .882l-7.5 4a.5.5 0 0 1-.47 0l-7.5-4a.5.5 0 0 1 0-.882l7.5-4z" />
+                                    <path d="m2.125 8.567-1.86.992a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882l-1.86-.992-5.17 2.756a1.5 1.5 0 0 1-1.41 0l-5.17-2.756z" />
+                                </svg>&nbsp;<p>My Posts</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="menuStuff menuHover" asp-controller="Home" asp-action="Profile">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-file-earmark-post" viewBox="0 0 16 16">
+                                    <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z" />
+                                    <path d="M4 6.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-7zm0-3a.5.5 0 0 1 .5-.5H7a.5.5 0 0 1 0 1H4.5a.5.5 0 0 1-.5-.5z" />
+                                </svg>&nbsp;<p>Profile</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="menuStuff menuHover" asp-controller="Home" asp-action="SignOut">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z" />
+                                </svg>&nbsp;<p>Sign Out</p>
+                            </a>
+                        </li>
+                        <li><img src="~/images/the_tree_of_time.svg" /></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="m-0 p-5 main" id="main">
+                <div class="toggle toggleHandler" onclick="ToggleSidebar()">
+                    <div class="togglebox toggleboxHeight" id="togglebox">
+                        <div class="toggleLine toggle1" id="toggle1"></div>
+                        <div class="toggleLine toggle2" id="toggle2"></div>
+                    </div>
+                </div>
+                <div class="p-0"></div>
+                <div class="col-lg-9 ms-0 p-0 content" id="content">
+                    <div class="d-flex justify-content-end">
+                        <a class="getBack" asp-controller="Home" asp-action="MyPosts">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z" />
+                            </svg>
+                        </a>
+                    </div>
+                    
+                    <div class="p-4"></div>
+                    @foreach (var data in Model.Item2)
+                    {
+                        <div class="dataCard m-auto p-0">
+                            <div class="senderInfo px-2 pt-2">
+                                <img src="/@data.UserAndProfilePic.ProfilePic?.ImageFile"/>
+                                <p class="p_tag_1">@data.UserAndProfilePic.User.Username</p>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <div style="padding-top: 13px; ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
+                                    <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
+                                </svg>
+                                </div>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <p class="p_tag_2">@data.Comment.Message</p>
+                            </div>
+                            <div class="datetimeDiv px-2 pt-2">
+                                <p>Date: @data.Comment.DateTime.ToString("MMMM dd, yyyy")</p>
+                                <p>Time: @data.Comment.DateTime.ToString("HH:mm:ss tt")</p>
+                            </div>
+                        </div>
+                        <div class="p-4"></div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>

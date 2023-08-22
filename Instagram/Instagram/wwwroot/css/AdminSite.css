@@ -1,0 +1,280 @@
+﻿.sideBar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 400px;
+    height: 100%;
+    transition: all 1s ease-in-out;
+    background: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+}
+
+.main {
+    position: absolute;
+    top: 0;
+    left: 400px;
+    background: #00000015;
+    width: 100%;
+    height: 100vh;
+    transition: all 1s ease-in-out;
+    overflow-y: scroll;
+}
+
+.frameCover {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+.toggleAdminSideBar {
+    left: -450px;
+}
+
+.toggleAdminMain {
+    left: 0;
+}
+
+.adminBody {
+    overflow: hidden;
+}
+
+.title {
+    padding: 34px 0px 10px 60px;
+}
+
+    .title h1 {
+        color: #606060a0;
+        letter-spacing: 1px;
+        font-size: 34px;
+        font-weight: 100;
+        width: 100%;
+        border-bottom: 1px solid #60606060;
+        padding-bottom: 6px;
+    }
+
+    .menus {
+        width: 100%;
+    }
+
+.menus ul {
+    width: 100%;
+    padding: 0;
+}
+
+.menus ul li {    
+    list-style: none;
+    padding-left: 40px;
+}
+
+    .menus ul li a {
+        padding: 2px 0px 2px 25px;
+        color: #606060a0;
+        font-size: 18px;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        transition-property: all;
+        transition-duration: 1s;
+        transition-timing-function: ease;
+    }
+
+    .menus ul li a svg {
+        color: #606060a0;
+    }
+
+        .menus ul li a p {
+            padding-top: 15px;
+            color: #606060d0;
+            letter-spacing: 1px;
+        }
+
+        .anchor:hover{
+            color: #606060a0;
+            text-decoration: none;
+            background: #BF40BF40;
+            border-left: 6px solid #BF40BF;
+        }
+
+.activated {
+    background: linear-gradient(to right, #BF40BF40, #ffffff15);
+    border-left: 6px solid #BF40BF;
+}
+
+.menus ul li:hover {
+    
+}
+
+.image {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.image img {
+    width: 200px;
+}
+
+.anchor {
+    border-left: 6px solid transparent;
+}
+
+.closeSidebar {
+    width: 46px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.cover {
+    width: 100%;
+    height: 46%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.6s ease;
+}
+
+.line {
+    width: 100%;
+    padding: 2px;
+    background: #606060;
+    transition: all 0.6s ease;
+}
+
+.line_1 {
+    transform: rotate(45deg);
+}
+
+.line_2 {
+    transform: rotate(-45deg);
+}
+
+.coverToggle {
+    height: 2px;
+}
+
+.cardHome {
+    background: #ffffff;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.svgs {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.imageCard {
+    background: #60606060;
+}
+
+.imageCard img {
+    width: 100%;
+    height: 490px;
+}
+
+.iconMessage {
+    display: flex;
+    align-items: center;
+}
+
+.iconMessage img {
+    width: 200px;
+}
+
+.iconMessage p {
+    font-size: 18px;
+    letter-spacing: 1px;
+    line-height: 29px;
+    color: #606060d0;
+}
+
+.message {
+    width: 100%;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.message h1 {
+    width: 90%;
+    color: #606060d0;
+    font-weight: 100;
+    font-size: 25px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #60606060;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+}
+
+.message p {
+    width: 90%;
+    color: #606060d0;
+    letter-spacing: 1px;
+    font-size: 18px;
+    line-height: 29px;
+}
+
+.groupMessage h1 {
+    color: #606060d0;
+    letter-spacing: 1px;
+    font-size: 25px;
+    font-weight: 100;
+}
+
+.groupMessage p {
+    color: #606060d0;
+    letter-spacing: 1px;
+    font-size: 18px;
+    line-height: 29px;
+}
+
+.groupImage {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.groupImage img {
+    width: 400px;
+}
+
+.userCard {
+    cursor: pointer;
+    background: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+.userCard:hover {
+    background: red;
+}
+
+.userCardData p {
+    color: #606060d0;
+    letter-spacing: 1px;
+    font-size: 18px;
+    line-height: 29px;
+}
+
+
+.datetimeDetails {
+    background: #E5E4E2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 0px 0px 13px;
+    border-top: 1px solid #C0C0C0;
+    border-bottom: 1px solid #ffffff;
+}
+
+.datetimeDetails p {
+    color: #606060d0;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
